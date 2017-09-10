@@ -1,6 +1,8 @@
+import keys from '../env/api_keys.json'
 import axios from 'axios'
+const { WEATHER_API_KEY } = keys
 
-const WEATHER_API_KEY = 'aa26da748bc4774b6037f17ddc27f6b7'
+// https://openweathermap.org/forecast5
 const ROOT_URL = `https://api.openweathermap.org/data/2.5/forecast?appid=${WEATHER_API_KEY}`
 
 export const FETCH_WEATHER = 'FETCH_WEATHER'
