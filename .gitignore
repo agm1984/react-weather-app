@@ -8,4 +8,4 @@ npm-debug.log
 /.idea
 
 # API Keys
-/env/api_keys.json
+/src/env/api_keys.json
