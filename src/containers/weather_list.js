@@ -6,6 +6,7 @@ import GoogleMap from '../components/google_map'
 
 class WeatherList extends Component {
     renderWeather(cityData) {
+        console.log(cityData.city)
 
         const name = cityData.city.name
         const convertKelvinToC = (k) => k - 273.15

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import { Field, reduxForm } from 'redux-form'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+//import { bindActionCreators } from 'redux'
 import { fetchWeather } from '../actions/index'
 
 class SearchBar extends Component {
@@ -32,7 +33,8 @@ class SearchBar extends Component {
                     placeholder="Get a five-day forecast in your favourite cities"
                     className="form-control"
                     value={this.state.term}
-                    onChange={this.onInputChange} />
+                    onChange={this.onInputChange}
+                />
 
                 <span className="input-group-btn">
                     <button type="submit" className="btn btn-secondary">Submit</button>
@@ -42,8 +44,25 @@ class SearchBar extends Component {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchWeather}, dispatch)
+function validate(values) {
+    //values.name must match <Field name="name" />
+    const errors = {}
+
+    // if (!values.title) { errors.title = "Please enter a title." }
+    // if (!values.categories) { errors.categories = "Please enter some categories." }
+    // if (!values.content || values.content.length < 20) { errors.content = "Content must be at least 20 characters." }
+
+    // If errors is empty, the form is OK to submit
+    return errors
 }
 
-export default connect(null, mapDispatchToProps)(SearchBar)
+// const mapDispatchToProps = (dispatch) => bindActionCreators({ fetchWeather }, dispatch)
+
+// export default connect(null, mapDispatchToProps)(SearchBar)
+
+export default reduxForm({
+    validate,
+    form: 'SearchWeatherForm'
+})(
+    connect(null, { fetchWeather })(SearchBar)
+)
